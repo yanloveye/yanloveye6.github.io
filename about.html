@@ -1,0 +1,147 @@
+---
+layout: page
+title: "About"
+description: "Hey, this is (YAN&YE)'s Love Cabin"
+header-img: "img/post-bg-rwd.jpg"
+---
+
+<!-- Language Selector -->
+<!-- <select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英文 English </option>
+</select> -->
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+
+    <!--copied from markdown -->
+    <blockquote><p>爱具体的人 不要爱抽象的人<br>
+    要爱生活 不要爱生活的意义</p></blockquote>
+
+    <p>Hey，我是<strong>阿彦</strong>，一个普普通通的，还老是被阿叶说憨的男子~（此处不知道还能不能称为男生）。</p>
+
+    <p>工作、学习之余，我还是一个运动爱好者，在福州，我误打误撞又顺理成章碰到了我最重要的心上人————噔噔蹬蹬蹬（阿叶）。</p>
+
+    <p>这是我的利用 <a href="https://pages.github.com/">GitHub Pages</a> 与 <a href="http://jekyll.com.cn/">Jekyll</a> 搭建的 我和阿叶的心动小屋。我在GitHub主页<a href="https://github.com/seanlee6">👉GitHub·seanlee6</a> 👉阿彦</a>。如果有什么问题，欢迎提出探讨（只接受阿叶提出的问题）。由于本小屋属于我和阿叶的私人领域，所以我关闭了评论功能，请阿叶同学线下找阿彦提出问题（最好可以来一枚阿叶的温柔甜蜜吻）~~~~</p>
+
+    <p></p>
+    
+    <h5>Talks</h5>
+
+    <ul>
+        <li><a href="https://github.com">GitHub</a></li>
+        <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+        <li><a href="http://huangxuan.me/">Hux</a></li> 
+        <li><a href="https://analytics.google.com/analytics">Google Analytics</a></li>
+    </ul>
+</div>
+
+<!-- English Version -->
+<!-- <div class="en post-container">
+    <blockquote><p>Yet another iOS Developer. <br>
+    Yet another Life-long Student.</p></blockquote>
+
+    <p>Hi, I am <strong>Yan</strong>，you can call me <strong>Sean</strong>. I am An ordinary boy who is always called stupid by Ye~ (I don't know if he can still be called a boy here).</p>
+
+    <p>This is me and Ye's heartbeat cottage, through making Github Pages and Jekyll.My GitHub  👉 <a href="http://github.com/seanlee6">Github·SEAN</a>.</p>
+    
+    <p>I am a sports enthusiast, I like fitness, running and boxing.</p>
+
+    <h5>Talks</h5>
+
+    <ul>
+    <li><a href="https://github.com">GitHub</a></li>
+    <li><a href="http://jekyll.com.cn/">jekyll</a></li>
+    <li><a href="https://pages.github.com/">GitHub Pages</a></li>
+    <li><a href="https://qiubaiying.github.io">BY</a></li>
+    </ul>
+</div> -->
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    // get nodes
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    var $select = document.querySelector("select");
+
+    // bind hashchange event
+    window.addEventListener('hashchange', _render);
+
+    // handle render
+    function _render(){
+        var _hash = window.location.hash;
+        // en
+        if(_hash == "#en"){
+            $select.selectedIndex = 1;
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        // zh by default
+        }else{
+            // not trigger onChange, otherwise cause a loop call.
+            $select.selectedIndex = 0;
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }
+    }
+
+    // handle select change
+    function onLanChange(index){
+        if(index == 0){
+            window.location.hash = "#zh"
+        }else{
+            window.location.hash = "#en"
+        }
+    }
+
+    // init
+    _render();
+</script>
+
+
+<!-- Gitalk 评论 start  -->
+{% if site.gitalk.enable %}
+<!-- Gitalk link  -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+    <script type="text/javascript">
+    var gitalk = new Gitalk({
+    clientID: '{{site.gitalk.clientID}}',
+    clientSecret: '{{site.gitalk.clientSecret}}',
+    repo: '{{site.gitalk.repo}}',
+    owner: '{{site.gitalk.owner}}',
+    admin: ['{{site.gitalk.admin}}'],
+    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+    id: 'about',
+    });
+    gitalk.render('gitalk-container');
+</script>
+{% endif %}
+<!-- Gitalk end -->
+
+ <!-- disqus 评论框 start  -->
+{% if site.disqus.enable %}
+
+<div class="comment">
+    <div id="disqus_thread" class="disqus-thread">
+    </div>
+</div>
+<!-- disqus 评论框 end -->
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "{{site.disqus.username}}";
+    var disqus_identifier = "{{site.disqus.username}}/{{page.url}}";
+    var disqus_url = "{{site.url}}{{page.url}}";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+{% endif %}
+
